@@ -1,0 +1,5 @@
+build/
+.vscode/
+document&imgs/
+*.code-workspace
+bin/
