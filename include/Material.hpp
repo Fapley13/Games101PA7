@@ -252,7 +252,7 @@ Vector3f Material::eval(const Vector3f &w_light, const Vector3f &w_out, const Ve
             Vector3f fresnel = FyFresnel(Kd, hv, metallic);
             float ggx = GGX(nh, roughness);
             float pdf = nh * .25f / nv * hv * ggx;
-            Vector3f diffuse = fresnel * nl / M_PI * (1.f - metallic);
+            Vector3f diffuse = (Vector3f(1.f) - fresnel) * Kd * nl / M_PI * (1.f - metallic);
             if (is_dir) {
                 return ggx * geo * fresnel * 0.25f + diffuse;
             } else return fresnel * geo * hv * nv / nh + diffuse / pdf;
